@@ -1,6 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import "./skills.js";
 import "./styles.css";
+import { skills } from "./skills.js";
 
 function App() {
   return (
@@ -32,8 +34,9 @@ function Intro() {
     <div>
       <h1>Adam Bethlehem</h1>
       <p>
-        I am Adam, A beginner fullstack automation engineer. I am now studying
-        to become a full stack we front end engineer. Come on a journey with me!
+        I am Adam, an experienced fullstack automation engineer. I am now
+        studying to become a full stack web front end engineer. Come on a
+        journey with me!
       </p>
     </div>
   );
@@ -41,20 +44,31 @@ function Intro() {
 
 function SkillList() {
   return (
-    <span className="skill-list">
-      <Skill name="JavaScript 🏋️‍♀️" backgroundColor="blue" />
-      <Skill name="Docker 🐳" backgroundColor="pink" />
-      <Skill name="CSS + HTML 🐝" backgroundColor="orange" />
-      <Skill name="Git + Github 🐝" backgroundColor="red" />
-      <Skill name="React 🕸️" backgroundColor="lightblue" />
-    </span>
+    <>
+      {skills.length === 0 ? (
+        <p> I am still working on my skill</p>
+      ) : (
+        <span className="skill-list">
+          {skills.map((skillObject) => (
+            <Skill
+              key={skillObject.skill}
+              name={skillObject.skill}
+              level={skillObject.level}
+              backgroundColor={skillObject.color}
+            />
+          ))}
+        </span>
+      )}
+    </>
   );
 }
 
-function Skill(props) {
+function Skill({ name, backgroundColor, level }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.backgroundColor }}>
-      {props.name}
+    <div className="skill" style={{ backgroundColor: backgroundColor }}>
+      {`${name} ${
+        level === "beginner" ? "🐣" : level === "intermediate" ? "👍" : "💪"
+      }`}
     </div>
   );
 }

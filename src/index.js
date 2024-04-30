@@ -46,7 +46,7 @@ function SkillList() {
   return (
     <>
       {skills.length === 0 ? (
-        <p> I am still working on my skill</p>
+        <p> I am still working on my skills</p>
       ) : (
         <span className="skill-list">
           {skills.map((skillObject) => (
